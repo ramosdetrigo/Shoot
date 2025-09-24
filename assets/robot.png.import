@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brj6vcunn3hrj"
-path="res://.godot/imported/light_circle.png-4709b6a88809e040b39e1453fbc66c4f.ctex"
+uid="uid://c507nvbak2nj5"
+path="res://.godot/imported/robot.png-b6fddb60c90fb955abb72fff30db5342.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://light_circle.png"
-dest_files=["res://.godot/imported/light_circle.png-4709b6a88809e040b39e1453fbc66c4f.ctex"]
+source_file="res://assets/robot.png"
+dest_files=["res://.godot/imported/robot.png-b6fddb60c90fb955abb72fff30db5342.ctex"]
 
 [params]
 

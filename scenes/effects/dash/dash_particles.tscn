@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhuk74d878d3t"]
+[gd_scene load_steps=4 format=3 uid="uid://bjtndegist0o0"]
 
-[ext_resource type="Texture2D" uid="uid://b6s82ac26kb0u" path="res://player/puff.png" id="1_ldmgr"]
-[ext_resource type="Script" uid="uid://cgr15nbvo1j45" path="res://player/dash_particles.gd" id="2_mi4y6"]
+[ext_resource type="Texture2D" uid="uid://b6s82ac26kb0u" path="res://assets/puff.png" id="1_0t2k4"]
+[ext_resource type="Script" uid="uid://cgr15nbvo1j45" path="res://scenes/effects/dash/dash_particles.gd" id="2_yvd4g"]
 
 [sub_resource type="Gradient" id="Gradient_mi4y6"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -11,7 +11,7 @@ unique_name_in_owner = true
 texture_filter = 1
 emitting = false
 amount = 75
-texture = ExtResource("1_ldmgr")
+texture = ExtResource("1_0t2k4")
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.9
@@ -26,4 +26,4 @@ angular_velocity_min = -180.0
 angular_velocity_max = 180.0
 scale_amount_min = 0.5
 color_ramp = SubResource("Gradient_mi4y6")
-script = ExtResource("2_mi4y6")
+script = ExtResource("2_yvd4g")

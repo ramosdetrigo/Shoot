@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc8nsukgjshme"]
+
+[ext_resource type="Texture2D" uid="uid://bqicgwihuusnb" path="res://assets/pistol.png" id="1_x8b8f"]
+[ext_resource type="Script" uid="uid://tca0ydkshsi4" path="res://scenes/guns/pistol/pistol.gd" id="2_4vo22"]
+
+[node name="Pistol" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_x8b8f")
+script = ExtResource("2_4vo22")
+fire_cooldown = 0.2
+reload_cooldown = 1.5
+metadata/_custom_type_script = "uid://cpp4u5axy7qdo"
+
+[node name="FirePosition" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(2, -1)
+
+[node name="FireTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_fire_timer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

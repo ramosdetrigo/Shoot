@@ -1,8 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cega683vu354e"]
+[gd_scene load_steps=13 format=3 uid="uid://djcly744xv64q"]
 
-[ext_resource type="Script" uid="uid://bimetynne24as" path="res://player/player.gd" id="1_rkbax"]
-[ext_resource type="Texture2D" uid="uid://c507nvbak2nj5" path="res://player/player.png" id="2_g1dw6"]
-[ext_resource type="Texture2D" uid="uid://brj6vcunn3hrj" path="res://light_circle.png" id="3_g1dw6"]
+[ext_resource type="Shader" uid="uid://bq22jq3xic3wk" path="res://scenes/player/hit.gdshader" id="1_fbgxb"]
+[ext_resource type="Script" uid="uid://bimetynne24as" path="res://scenes/player/robot.gd" id="1_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://c507nvbak2nj5" path="res://assets/robot.png" id="2_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://brj6vcunn3hrj" path="res://assets/light_circle.png" id="3_g1dw6"]
+[ext_resource type="PackedScene" uid="uid://cc8nsukgjshme" path="res://scenes/guns/pistol/pistol.tscn" id="4_yw30f"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fbgxb"]
+resource_local_to_scene = true
+shader = ExtResource("1_fbgxb")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/intensity = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yw30f"]
 atlas = ExtResource("2_g1dw6")
@@ -48,8 +56,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(12, 14)
 
-[node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_rkbax")
+[node name="Robot" type="CharacterBody2D" groups=["hittable"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_g1dw6")
+is_player = true
 
 [node name="ParticleHolder" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -57,11 +68,14 @@ unique_name_in_owner = true
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
+material = SubResource("ShaderMaterial_fbgxb")
 sprite_frames = SubResource("SpriteFrames_4flbx")
 animation = &"idle"
+frame_progress = 0.5400832
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4flbx")
+debug_color = Color(0, 0.8075001, 0.95, 0)
 
 [node name="DashTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -74,6 +88,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -82,10 +97,15 @@ drag_right_margin = 0.1
 editor_draw_drag_margin = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+unique_name_in_owner = true
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 1)
 texture = ExtResource("3_g1dw6")
 texture_scale = 2.0
+
+[node name="Pistol" parent="." instance=ExtResource("4_yw30f")]
+unique_name_in_owner = true
+position = Vector2(6, 0)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
